@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row">
+        {#  Вопрос и ответы  #}
+        <div class="col-lg-8 col-12">
+            <h2 class="display-6 text-center">Вопрос:</h2>
+            {% include 'includes/question-card.html' %}
+            <h2 class="display-6 text-center">Ответы:</h2>
+            {% if answers.list_empty %}
+                <h1 class="display-6 text-center">Ваш ответ может быть первым.</h1>
+            {% else %}
+                {% for answer in page_obj %}
+                    {% include 'includes/answer-card.html' %}
+                {% endfor %}
+            {% endif %} 
+            {% include 'includes/paginator.html' %}
+            {% if authorizate %}{# Если ветка не закрыта #}
+                {% if not closed%}{# Если ветка не закрыта #}
+                    {% include 'includes/answer-form.html' %}
+                {% else %}
+                    <hr />
+                    <h3 class="text-center text-secondary fs-4">Обсуждение закрыто</h3>
+                {% endif %}
+            {% else %}
+                <h3 class="text-center text-secondary fs-4">Вы не можете добавлять ответы. Авторизируйтесь.</h3>
+            {% endif %}
+        </div>
+        {# Правый блок #}
+        <div class="col-lg-4 col-12">
+            {% include 'includes/sidebar.html' %}
+        </div>
+    </div>
+{% endblock %}

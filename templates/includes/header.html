@@ -1,0 +1,36 @@
+{# Статические файлы #}
+{% load static %}
+
+<div class="container">
+  <div class="d-flex align flex-wrap justify-content-center align-items-center ">
+    <a href="/" class="text-dark text-decoration-none">
+      <h2 class="font-weight-bold"> Riddle </h2>
+    </a>
+    <form class="flex-grow-1 mx-auto  mb-0 me-lg-12">
+      <input type="search" class="form-control" placeholder="Поиск" aria-label="Search">
+    </form>
+    {% if authorized %}
+    <div class="dropdown text-end">
+        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="{% static 'images/default.svg'%}" alt="mdo" width="32" height="32" class="rounded-circle">
+        </a>
+        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+          <li><a class="dropdown-item" href="{% url 'questions:new_question' %}">Новый вопрос</a></li>
+          <li><a class="dropdown-item" href="{% url 'questions:settings' %}">Настройки</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><button class="dropdown-item" href="#">Выход</button></li>
+        </ul>
+    </div>
+    {% else %}
+    <div class="dropdown text-end">
+        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="{% static 'images/default.svg'%}">
+        </a>
+        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+        <li><a class="dropdown-item" href="{% url 'questions:sign_in' %}">Вход</a></li>
+        <li><a class="dropdown-item" href="{% url 'questions:sign_up' %}">Регистрация</a></li>
+        </ul>
+    </div>
+    {% endif %}
+  </div>
+</div>

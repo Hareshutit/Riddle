@@ -1,0 +1,53 @@
+{# Базовый шаблон #}
+{% extends 'base.html' %}
+
+{# Статические файлы #}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        {#  Форма регистрации  #}
+        <div class="col-lg-8 col-12">
+            <h1 class="display-6 m-3 text-center">Регистрация</h1>
+            <form class="w-md-75" action="">
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Логин</label>
+                    <div class="col-sm-10">
+                        <input type="text" aria-label="Login" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Почта</label>
+                    <div class="col-sm-10">
+                        <input type="text" aria-label="Email" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Никнейм</label>
+                    <div class="col-sm-10">
+                        <input type="text" aria-label="Nickname" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Пароль</label>
+                    <div class="col-sm-10">
+                        <input type="password" aria-label="Password" class="form-control" required>
+                    </div>
+                </div>
+                <img src="{% static 'images/test_avatar_1.jpg' %}" class="img-thumbnail m-3" style="max-width: 200px;" alt="...">
+                <div class="row mb-3 align-items-center">
+                    <label class="col-sm-2 col-form-label">Аватар</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="file" id="Avatar">
+                    </div>
+                </div>
+                <p class="text-center text-danger">Длина логина должна быть больше 3 символов</p>
+                <button class="btn btn-success mx-auto d-grid">Редактировать</button>
+            </form>
+        </div>
+        {# Правый блок #}
+        <div class="col-lg-4 col-12">
+            {% include 'includes/sidebar.html' %}
+        </div>
+    </div>
+{% endblock %}

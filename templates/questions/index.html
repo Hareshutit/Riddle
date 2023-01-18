@@ -1,0 +1,55 @@
+{# Базовый шаблон #}
+{% extends 'base.html' %}
+
+{# Статические файлы #}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        {#  Список вопросов  #}
+        <div class="col-lg-8 col-12">
+            <div class="row align-items-center m-2 g-2">
+                <div class="col-md-3 col-sm-12">
+                    <h1 class="display-6 text-center">Вопросы</h1>
+                </div>
+                <div class="col-md-3 col-sm-4 col-6 d-flex justify-content-center">
+                    {% if hot %}
+                        <a href="{% url 'questions:index' %}" class="btn btn-danger">🔥 Горячее</a>
+                    {% else %}
+                        <a href="{% url 'questions:hot_list' %}" class="btn btn-outline-danger">🔥 Горячее</a>
+                    {% endif %}
+                </div>
+                <div class="col-md-3 col-sm-4 col-6 d-flex justify-content-center">
+                    <a href="{% url 'questions:index' %}" class="btn btn-outline-info">🆕 Новые</a>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <select class="form-select" aria-label="TagSelect" onchange="location.href=this.value">
+                        {% if tag %}
+                            <option selected>{{ tag }}</option>
+                            <option value="{% url 'questions:index' %}">Сброс</option>
+                        {% else %}
+                            <option value="{% url 'questions:index' %}" selected>Указать тег</option>
+                        {% endif %}
+                        {% for tag_ in tags_list %}
+                            {% if tag != tag_ %}
+                                <option value="{% url 'questions:list_with_tag' tag_ %}">{{ tag_ }} </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            {% if not page_obj %}
+                <h1 class="display-6 text-center">Ваш вопрос может оказаться первым</h1>
+            {% else %}
+                {% for question in page_obj %}
+                    {% include 'includes/question-card.html' %}
+                {% endfor %}
+                {% include 'includes/paginator.html' %}
+            {% endif %}
+        </div>
+        {# Правый блок #}
+        <div class="col-lg-4 col-12">
+            {% include 'includes/sidebar.html' %}
+        </div>
+    </div>
+{% endblock %}

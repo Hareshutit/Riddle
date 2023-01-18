@@ -1,0 +1,20 @@
+<div class="row align-items-center m-2 g-2">
+    <h2 class="display-6 mb-3">Популярные теги</h2>
+    {% if top_tag %}
+        {% for tag in top_tag %}
+            <a href="{% url 'questions:list_with_tag' tag.name %}" class="d-inline {{ tag.size }} {{ tag.color }} text-decoration-none">{{ tag.name }}</a>
+        {% endfor %}
+    {% else %}
+        <p class="display-0">В данный момент вопросов не найдено</p>
+    {% endif %}
+</div>
+<div class="row align-items-center m-2 g-2 mt-0 mb-0">
+    <h2 class="display-6 mb-3">Доска почёта</h2>
+    {% if top_author %}
+        {% for author in top_author %}
+            <p class="d-inline text-decoration-none fs-4">{{ author.user }}</p>
+        {% endfor %}
+    {% else %}
+        <p class="display-0">В данный момент вопросов не найдено</p>
+    {% endif %}
+</div>

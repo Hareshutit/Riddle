@@ -1,0 +1,40 @@
+{# Статические файлы #}
+{% load static %}
+
+{# bootstrap #}
+{% load bootstrap5 %}
+
+{# Компоненты bootstrap #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/custom.scss' %}">
+
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header class="p-3 mb-3 border-bottom">
+        {% include 'includes/header.html' %}
+    </header>
+    <main>
+        <div class="container">
+            {% block content %}
+                Контент не подвезли :(
+            {% endblock %}
+        </div>
+    </main>
+    <footer class=" text-center p-2 mb-2 mt-auto border-top container-fluid justify-content-center  ">
+        {% include 'includes/footer.html' %}
+    </footer>
+</body>
+</html>
