@@ -14,7 +14,7 @@
                 {% endfor %}
             {% endif %} 
             {% include 'includes/paginator.html' %}
-            {% if authorizate %}{# Если ветка не закрыта #}
+            {% if authorized %}{# Если ветка не закрыта #}
                 {% if not closed%}{# Если ветка не закрыта #}
                     {% include 'includes/answer-form.html' %}
                 {% else %}
