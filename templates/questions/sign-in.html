@@ -4,26 +4,17 @@
 {# Статические файлы #}
 {% load static %}
 
+{% load bootstrap5 %}
+
 {% block content %}
     <div class="row">
         {#  Форма входа  #}
         <div class="col-lg-8 col-12">
             <h1 class="display-6 m-3 text-center">Авторизация</h1>
-            <form class="w-md-75" action="">
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Почта</label>
-                    <div class="col-sm-10">
-                        <input type="text" aria-label="Email" placeholder="example@mail.ru" class="form-control" required>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Пароль</label>
-                    <div class="col-sm-10">
-                        <input type="password" aria-label="Password" placeholder="●●●●●●●" class="form-control" required>
-                    </div>
-                </div>
-                <p class="text-center text-danger">Неверная почта или пароль</p>
-                <button class="btn btn-success mx-auto d-grid">Отправить</button>
+            <form novalidate class="w-md-75" action="/login/" method="POST">
+                {% csrf_token %}
+                {% bootstrap_form form layout='horizontal'%}
+                <button type="submit" class="btn btn-primary d-grid gap-2 col-4 mx-auto">Вход</button>
             </form>
         </div>
         {# Правый блок #}

@@ -9,7 +9,7 @@
     <form class="flex-grow-1 mx-auto  mb-0 me-lg-12">
       <input type="search" class="form-control" placeholder="Поиск" aria-label="Search">
     </form>
-    {% if authorized %}
+    {% if request.user.is_authenticated %}
     <div class="dropdown text-end">
         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="{% static 'images/default.svg'%}" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -18,13 +18,13 @@
           <li><a class="dropdown-item" href="{% url 'questions:new_question' %}">Новый вопрос</a></li>
           <li><a class="dropdown-item" href="{% url 'questions:settings' %}">Настройки</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><button class="dropdown-item" href="#">Выход</button></li>
+          <li><a class="dropdown-item" href="{% url 'questions:logout' %}">Выход</a></li>
         </ul>
     </div>
     {% else %}
     <div class="dropdown text-end">
         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="{% static 'images/default.svg'%}">
+          <img src="{% static 'images/default.svg'%}"  alt="mdo" width="32" height="32" class="rounded-circle">
         </a>
         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
         <li><a class="dropdown-item" href="{% url 'questions:sign_in' %}">Вход</a></li>

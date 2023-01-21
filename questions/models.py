@@ -1,9 +1,11 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.db.models import Count, Sum
 
+static_url = settings.STATIC_URL
 
 class ProfileManager(models.Manager):
     def top_users(self, count=5):
@@ -12,7 +14,7 @@ class ProfileManager(models.Manager):
 
 class Profile(models.Model):
     avatar = models.ImageField(null=True, blank=True, verbose_name='Profile avatar',
-                               default='/images/default.svg')
+                               default=static_url+"images/default.svg' %}")
 
     user = models.OneToOneField(to=User, related_name='profile', on_delete=models.CASCADE, null=False)
 

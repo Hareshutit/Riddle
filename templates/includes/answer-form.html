@@ -1,21 +1,13 @@
 {# Статические файлы #}
 {% load static %}
 
+{% load bootstrap5 %}
+
 <div class="row gx-2 mt-4 mb-4">
-    <div class="col-md-2 col-lg-2 text-center d-none d-md-block">
-        <img src="{% static 'images/default.svg' %}" class="question-card-img d-md-block d-none" alt="">
-        <p class="text-secondary m-0 d-block"><b>Author</b></p>
-    </div>
-    <div class="col-10">
-        <div class="badge rounded-pill bg-success text-light d-md-none m-2">
-            <img src="{% static 'images/default.svg' %}" class="question-card-sm-img" alt="">
-            <p class="d-inline">Author</p>
-        </div>
-        <textarea name="Answer" class="form-control" id="AnswerTextArea" rows="5" required></textarea>
-        <div class="d-flex justify-content-evenly gx-2 m-2">
-            <button class="btn btn-success">Отправить</button>
-            <button class="btn btn-primary">Предварительный просмотр</button>
-        </div>
-    </div>
+    <form novalidate class="w-md-75" action="{% url 'questions:question' question.id %}" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form layout='horizontal'%}
+        <button type="submit" class="btn btn-primary d-grid gap-2 col-4 mx-auto">Опубликовать</button>
+    </form>
 </div>
 <hr class="d-md-none">

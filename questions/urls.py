@@ -1,4 +1,7 @@
 from django.urls import path
+from django.contrib.auth.views import LogoutView
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 
@@ -13,5 +16,6 @@ urlpatterns = [
     path('question/<int:id>/', views.question, name='question'),
     path('login/', views.sign_in, name='sign_in'),
     path('signup/', views.sign_up, name='sign_up'),
+    path('logout/', views.logout, name='logout'),
     path('settings/', views.settings, name='settings')
 ]
